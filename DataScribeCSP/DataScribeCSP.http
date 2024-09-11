@@ -1,0 +1,6 @@
+@DataScribeCSP_HostAddress = http://localhost:5070
+
+GET {{DataScribeCSP_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
