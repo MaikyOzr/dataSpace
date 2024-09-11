@@ -1,22 +1,7 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - build
-      - '-t'
-      - >-
-        europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:${SHORT_SHA}
-      - '-f'
-      - Dockerfile
-      - .
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - push
-      - >-
-        europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:${SHORT_SHA}
-timeout: 3600s
-images:
-  - >-
-    europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:${SHORT_SHA}
-options:
-  substitutionOption: ALLOW_LOOSE
-  logging: NONE
+    args: ['build', '-t', 'my-image', '.']
+
+build:
+  service_account: 'datascribecp@elevated-style-430619-r8.iam.gserviceaccount.com'
+  logs_bucket: 'datascribecp'
