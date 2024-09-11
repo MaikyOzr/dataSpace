@@ -1,7 +1,7 @@
-﻿steps:
+steps:
   - name: 'gcr.io/cloud-builders/docker'
-    script: |
-      docker build -t europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:tag1 .
-    automapSubstitutions: true
+    args: ['build', '-t', 'europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:tag1', '.']
 images:
   - 'europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:tag1'
+options:
+  logging: CLOUD_LOGGING_ONLY
