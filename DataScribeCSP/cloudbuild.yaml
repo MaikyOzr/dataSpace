@@ -3,5 +3,4 @@ steps:
     args: ['build', '-t', 'europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:tag1', '.']
 images:
   - 'europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:tag1'
-options:
-  logging: CLOUD_LOGGING_ONLY
+logs_bucket: 'gs://your-logs-bucket'
