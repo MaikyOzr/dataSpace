@@ -1,5 +1,4 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
@@ -10,14 +9,13 @@ WORKDIR /src
 COPY ["DataScribeCSP.csproj", "./"]
 RUN dotnet restore "DataScribeCSP.csproj"
 COPY . .
-WORKDIR "/src/"
 RUN dotnet build "DataScribeCSP.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "DataScribeCSP.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "DataScribeCSP.dll"]
+COPY quickstart.sh /  
+ENTRYPOINT ["/quickstart.sh"]  
