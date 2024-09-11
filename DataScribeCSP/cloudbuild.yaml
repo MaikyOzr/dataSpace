@@ -1,8 +1,18 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:tag1', '.']
+    id: 'Build Docker Image'
+    entrypoint: 'bash'
+    args:
+      - -c
+      - |
+        docker build -t europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:tag1 .
+  - name: 'gcr.io/cloud-builders/docker'
+    id: 'Push Docker Image'
+    entrypoint: 'bash'
+    args:
+      - -c
+      - |
+        docker push europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:tag1
+
 images:
   - 'europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:tag1'
-logs_bucket: 'gs://your-logs-bucket'
-options: 
- logging: CLOUD_LOGGING_ONLY
