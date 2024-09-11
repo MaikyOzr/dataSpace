@@ -1,18 +1,23 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    id: 'Build Docker Image'
-    entrypoint: 'bash'
     args:
-      - -c
-      - |
-        docker build -t europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:tag1 .
+      - build
+      - '-t'
+      - >-
+        europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:${SHORT_SHA}
+      - '-f'
+      - Dockerfile
+      - .
   - name: 'gcr.io/cloud-builders/docker'
-    id: 'Push Docker Image'
-    entrypoint: 'bash'
     args:
-      - -c
-      - |
-        docker push europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:tag1
+      - push
+      - >-
+        europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:${SHORT_SHA}
+timeout: 3600s
 images:
-  - 'europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:tag1'
-logs_bucket: 'gs://datascribecp'
+  - >-
+    europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:${SHORT_SHA}
+logsBucket: 'gs://datascribecp'
+options:
+  substitutionOption: ALLOW_LOOSE
+  logging: CLOUD_LOGGING_ONLY
