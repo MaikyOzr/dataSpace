@@ -1,0 +1,7 @@
+﻿steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    script: |
+      docker build -t europe-central2-docker.pkg.dev/$PROJECT_ID/DataScribeCSP-docker-repo/datascribe-image:tag1 .
+    automapSubstitutions: true
+images:
+  - 'europe-central2-docker.pkg.dev/$PROJECT_ID/DataScribeCSP-docker-repo/datascribe-image:tag1'
