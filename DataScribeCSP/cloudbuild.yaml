@@ -17,7 +17,6 @@ timeout: 3600s
 images:
   - >-
     europe-central2-docker.pkg.dev/elevated-style-430619-r8/elevated-style-docker-repo/datascribe-image:${SHORT_SHA}
-logsBucket: 'gs://datascribecp'
 options:
   substitutionOption: ALLOW_LOOSE
-  logging: CLOUD_LOGGING_ONLY
+  logging: NONE
