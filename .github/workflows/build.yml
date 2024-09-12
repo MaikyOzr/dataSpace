@@ -15,16 +15,16 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore DataScribeCSP/DataScribeCSP.sln
 
       - name: Build
-        run: dotnet build --no-restore
+        run: dotnet build path/to/your/project.sln --no-restore
 
       - name: Test
-        run: dotnet test --no-build
+        run: dotnet test path/to/your/project.sln --no-build
 
       - name: Publish
-        run: dotnet publish -c Release -o /publish
+        run: dotnet publish path/to/your/project.sln -c Release -o /publish
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
