@@ -21,7 +21,7 @@ jobs:
         run: dotnet build DataScribeCSP/DataScribeCSP.csproj
 
       - name: Test
-        run: dotnet test DataScribeCSP/DataScribeCSP.csproj
+        run: dotnet test DSTests/DSTests.csproj
 
       - name: Publish
         run: dotnet publish DataScribeCSP/DataScribeCSP.csproj -c Release -o /publish
