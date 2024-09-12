@@ -1,24 +1,33 @@
-name: dotnet-build  
+name: dotnet-build
 
-on: push  
+on: push
 
-jobs:  
-  build:  
-    runs-on: ubuntu-latest 
-    steps:  
-      - name: Check out repo code  
-        uses: actions/checkout@v3  
-      - name: Setup .NET  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
         uses: actions/setup-dotnet@v3
-        with:  
-          dotnet-version: '8.0.x'  
-      - name: Restore  
-        run: dotnet restore  
-      - name: Build  
-        run: dotnet build --no-restore  
-      - name: Test  
-        run: dotnet test --no-build  
-      - name: Publish  
-        run: dotnet publish -c Release -o /publish  
-      - name: Upload artifact  
-        
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Test
+        run: dotnet test --no-build
+
+      - name: Publish
+        run: dotnet publish -c Release -o /publish
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: published-app
+          path: /publish
